@@ -1,0 +1,97 @@
+<div class="container my-5" style="max-width: 700px;">
+  <h3 class="text-center mb-4 fw-bold text-primary">Employee Registration Form</h3>
+
+  <form [formGroup]="register.employeeForm" (ngSubmit)="onEmployeeSubmit()" #employeeform="ngForm">
+
+    <!-- Employee ID -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="employeeId" class="form-label">Employee ID</label>
+        <input id="employeeId" type="number" class="form-control" formControlName="employeeId" placeholder="Enter ID">
+        @if(register.employeeForm.controls['employeeId'].errors?.['required']){
+        <div class="alert alert-danger">Employee Id is required</div>
+        }
+        @else if(register.employeeForm.controls['employeeId'].errors?.['minlength']){
+        <div class="alert alert-danger">Employee Id minimun 4 required</div>
+        }
+        @else if(register.employeeForm.controls['employeeId'].errors?.['maxlength']){
+        <div class="alert alert-danger">Employee Id maximun 4 required</div>
+        }
+      </div>
+      <div class="col-md-6">
+        <label for="employeeName" class="form-label">Employee Name</label>
+        <input id="employeeName" type="text" class="form-control" formControlName="employeeName"
+          placeholder="Enter name">
+      </div>
+    </div>
+
+    <!-- Address -->
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input id="address" type="text" class="form-control" formControlName="address" placeholder="Street / Locality">
+    </div>
+
+    <!-- City + Zip -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="city" class="form-label">City</label>
+        <input id="city" type="text" class="form-control" formControlName="city" placeholder="Enter city">
+      </div>
+
+      <div class="col-md-6">
+        <label for="zipcode" class="form-label">Zip Code</label>
+        <input id="zipcode" type="number" class="form-control" formControlName="zipcode" placeholder="6-digit code">
+        @if(register.employeeForm.controls['zipcode'].errors?.['minlength']){
+        <div class="alert alert-danger">Employee Id minimun 4 required</div>
+        }
+        @else if(register.employeeForm.controls['zipcode'].errors?.['maxlength']){
+        <div class="alert alert-danger">Employee Id maximun 4 required</div>
+        }
+      </div>
+    </div>
+
+    <!-- Phone + Email -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="phone" class="form-label">Phone</label>
+        <input id="phone" type="text" class="form-control" formControlName="phone" placeholder="10-digit phone number">
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" class="form-control" formControlName="email" placeholder="example@email.com">
+      </div>
+    </div>
+
+    <!-- SkillSets -->
+    <div class="mb-3">
+      <label for="skillSets" class="form-label">Skill Sets</label>
+      <input id="skillSets" type="text" class="form-control" formControlName="skillSets"
+        placeholder="e.g. Angular, Java, SQL">
+    </div>
+
+    <!-- Country + Joining Date -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="country" class="form-label">Country</label>
+        <input id="country" type="text" class="form-control" formControlName="country" placeholder="Enter country">
+      </div>
+      <div class="col-md-6">
+        <label for="joiningDate" class="form-label">Joining Date</label>
+        <input id="joiningDate" type="date" class="form-control" formControlName="joiningDate">
+      </div>
+    </div>
+
+    <!-- Avatar URL
+    <div class="mb-3">
+      <label for="avatar" class="form-label">Avatar URL</label>
+      <input id="avatar" type="text" class="form-control" formControlName="avatar" placeholder="Paste image URL">
+    </div> -->
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button class="btn btn-success px-4 py-2" type="submit" [disabled]="employeeform.invalid">
+        <i class="bi bi-check-circle"></i> Submit
+      </button>
+    </div>
+  </form>
+</div>

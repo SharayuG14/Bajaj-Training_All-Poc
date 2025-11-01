@@ -1,0 +1,4 @@
+.sidebar { position: sticky; top:0; height:100vh; overflow-y:auto; width: 280px; max-width: 100%; }
+.nav-link { color: #333; }
+.nav-link:hover { background-color: #e3e3e3; border-radius: 4px; }
+.nav-link.active { background-color: #007bff; color: white; }

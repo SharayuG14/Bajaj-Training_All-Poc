@@ -1,0 +1,51 @@
+<section class="auth-container">
+  <h2>Create Your Account</h2>
+  <p class="subtitle">Join Bajaj eCommerce for a personalised shopping experience</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="form-field">
+      <label for="name">Full Name</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter your full name" />
+      <div class="error" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+        <span *ngIf="form.controls.name.errors?.['required']">Name is required</span>
+        <span *ngIf="form.controls.name.errors?.['minlength']">Name must be at least 3 characters</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="registerEmail">Email</label>
+      <input id="registerEmail" type="email" formControlName="email" placeholder="you@example.com" />
+      <div class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        <span *ngIf="form.controls.email.errors?.['required']">Email is required</span>
+        <span *ngIf="form.controls.email.errors?.['email']">Enter a valid email address</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="registerPassword">Password</label>
+      <input id="registerPassword" type="password" formControlName="password" placeholder="Choose a password" />
+      <div class="error" *ngIf="form.controls.password.touched && form.controls.password.invalid">
+        <span *ngIf="form.controls.password.errors?.['required']">Password is required</span>
+        <span *ngIf="form.controls.password.errors?.['minlength']">Password must be at least 6 characters</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Re-enter your password" />
+      <div class="error" *ngIf="form.controls.confirmPassword.touched && (form.controls.confirmPassword.invalid || form.hasError('mismatch'))">
+        <span *ngIf="form.controls.confirmPassword.errors?.['required']">Confirmation is required</span>
+        <span *ngIf="form.hasError('mismatch')">Passwords do not match</span>
+      </div>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" [disabled]="isSubmitting || form.invalid">
+      <span *ngIf="!isSubmitting">Create Account</span>
+      <span *ngIf="isSubmitting">Creating...</span>
+    </button>
+  </form>
+
+  <p class="switch">Already registered? <a routerLink="/login" [queryParams]="{ redirectTo: redirectTo }">Sign in instead</a></p>
+</section>
