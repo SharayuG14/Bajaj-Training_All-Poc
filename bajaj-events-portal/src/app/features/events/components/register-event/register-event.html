@@ -1,0 +1,181 @@
+<div class="container mt-4">
+  <h1>{{ title }}</h1>
+  
+  <!-- Success Message -->
+  @if (successMessage) {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+    </div>
+  }
+  
+  <!-- Error Message -->
+  @if (errorMessage) {
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Form -->
+  <form [formGroup]="register.eventForm" (ngSubmit)="onEventSubmit()">
+    <fieldset>
+      
+      <!-- Event ID -->
+      <div class="form-group mb-3">
+        <label for="inputEventId" class="form-label">Event ID <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="inputEventId" 
+          placeholder="Enter event ID (e.g., 1001)"
+          name="eventId" 
+          formControlName="eventId"
+          [ngClass]="{'is-invalid': shouldShowError('eventId')}">
+        @if (shouldShowError('eventId')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('eventId') }}
+          </div>
+        }
+      </div>
+
+      <!-- Event Code -->
+      <div class="form-group mb-3">
+        <label for="inputEventCode" class="form-label">Event Code <span class="text-danger">*</span></label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="inputEventCode" 
+          placeholder="Enter 6-char code (e.g., EVT001)"
+          name="eventCode" 
+          formControlName="eventCode"
+          [ngClass]="{'is-invalid': shouldShowError('eventCode')}">
+        @if (shouldShowError('eventCode')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('eventCode') }}
+          </div>
+        }
+      </div>
+
+      <!-- Event Name -->
+      <div class="form-group mb-3">
+        <label for="inputEventName" class="form-label">Event Name <span class="text-danger">*</span></label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="inputEventName" 
+          placeholder="Enter event name (min 3 characters)"
+          name="eventName" 
+          formControlName="eventName"
+          [ngClass]="{'is-invalid': shouldShowError('eventName')}">
+        @if (shouldShowError('eventName')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('eventName') }}
+          </div>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="form-group mb-3">
+        <label for="inputDescription" class="form-label">Description</label>
+        <textarea 
+          class="form-control" 
+          id="inputDescription"
+          placeholder="Enter event description"
+          name="description" 
+          formControlName="description"
+          rows="3"></textarea>
+      </div>
+
+      <!-- Start Date -->
+      <div class="form-group mb-3">
+        <label for="inputStartDate" class="form-label">Start Date <span class="text-danger">*</span></label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="inputStartDate"
+          name="startDate" 
+          formControlName="startDate"
+          [ngClass]="{'is-invalid': shouldShowError('startDate')}">
+        @if (shouldShowError('startDate')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('startDate') }}
+          </div>
+        }
+      </div>
+
+      <!-- End Date -->
+      <div class="form-group mb-3">
+        <label for="inputEndDate" class="form-label">End Date <span class="text-danger">*</span></label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="inputEndDate"
+          name="endDate" 
+          formControlName="endDate"
+          [ngClass]="{'is-invalid': shouldShowError('endDate')}">
+        @if (shouldShowError('endDate')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('endDate') }}
+          </div>
+        }
+      </div>
+
+      <!-- Event Fees -->
+      <div class="form-group mb-3">
+        <label for="inputFees" class="form-label">Event Fees <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="inputFees" 
+          placeholder="Enter fees (non-negative)"
+          name="fees" 
+          formControlName="fees"
+          [ngClass]="{'is-invalid': shouldShowError('fees')}">
+        @if (shouldShowError('fees')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('fees') }}
+          </div>
+        }
+      </div>
+
+      <!-- Total Seats Filled -->
+      <div class="form-group mb-3">
+        <label for="inputSeatsFilled" class="form-label">Total Seats Filled <span class="text-danger">*</span></label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="inputSeatsFilled"
+          placeholder="Enter seats (0-100)"
+          name="seatsFilled" 
+          formControlName="seatsFilled"
+          [ngClass]="{'is-invalid': shouldShowError('seatsFilled')}">
+        @if (shouldShowError('seatsFilled')) {
+          <div class="invalid-feedback d-block">
+            {{ getErrorMessage('seatsFilled') }}
+          </div>
+        }
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-group mb-3">
+        <button 
+          type="submit" 
+          class="btn btn-dark" 
+          [disabled]="isSubmitting || register.eventForm.invalid">
+          @if (isSubmitting) {
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Registering...
+          } @else {
+            Register Event
+          }
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-secondary ms-2" 
+          (click)="register.eventForm.reset()"
+          [disabled]="isSubmitting">
+          Reset
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>

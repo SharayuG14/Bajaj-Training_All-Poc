@@ -1,0 +1,88 @@
+@if(events && events.length>0)
+{
+
+<h1>{{title}}</h1>
+<hr>
+<h6>{{subTitle}}</h6>
+
+@if(childMessage)
+{
+    <p>{{childMessage}}</p>
+}
+
+<div class="row text-center">
+   
+    <input type="search" id="inputsearch" class="form-control" 
+    placeholder="search event by event name" [(ngModel)]="searchChars" (input)="searchEvents()">
+  
+</div>
+
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            @for(col of columns; track $index)
+           
+            {
+            <th>
+                {{col}}
+        @if(col=='Event Name'){
+                        <button class="btn btn-sm btn-light" (click)="toggleSort('eventName')">
+        @if (sortColumn === 'eventName' && sortDirection === 'asc') {
+        <span>↑</span>
+        }
+        @else if (sortColumn === 'eventName' && sortDirection === 'desc') {
+        <span>↓</span>
+        }
+        @else {
+        <span>↕</span>
+        }
+    </button>
+                    }
+            </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (event of filteredEvents | sort:sortColumn:sortDirection|paginate:{itemsPerPage:pageSize,currentPage:pageNumber}; track $index) {
+        <tr>
+            <td><span>{{event.eventCode|lowercaseTrunc}}</span></td>
+            <td><span>{{event.eventName|uppercase}}</span></td>
+            <td><span>{{event.startDate.toString()|dateGlobalization:'en-IN'}}</span></td>
+            <td><span>{{event.fees|currency:'INR'}}</span></td>
+            <td>
+                <!-- <button class="btn btn-dark" (click)="onEventSelection(event.eventId)">Show Details</button> -->
+                 <a class="btn btn-dark" [routerLink]="['/events/register',event.eventId]">Show Details</a>
+            </td>
+            @if(role==="Hr"){
+                <td>
+                    <!-- <button class="btn btn-dark" (click)="onEventSelection(event.eventId)">Show Details</button> -->
+                     <a class="btn btn-dark" [routerLink]="['/events',event.eventId]"> Cancel events</a>
+                </td>
+            }
+            
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="container text-center">
+    <pagination-controls (pageChange)="pageNumber = $event" class="my-pagination"></pagination-controls>
+</div>
+
+<!-- @if (selectedEventId>0) {
+
+@defer () {
+    <app-event-details [eventId]="selectedEventId" [subtitle]="childSubTitle" (sendConfirmationMessage)="handleChildMessage($event)"></app-event-details>
+}@placeholder (minimum 3000ms){
+    <h4>Please wait!Your content are getting prepared!</h4>
+}@error{
+<h4>Something getting wrong</h4>}
+
+}
+} -->
+}
+@else {
+<h4>
+    sorry we didnot find any event please try again
+</h4>
+}

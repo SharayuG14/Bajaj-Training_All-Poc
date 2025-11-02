@@ -1,0 +1,23 @@
+<!-- <div class="row">
+  @for(banner of banners; track $index){
+    <div class="col-12 col-md-4 mb-3">
+      <img [src]="banner.img" class="img-fluid rounded" alt="Banner {{$index+1}}">
+    </div>
+  }
+</div> -->
+<div class="container mt-4">
+  <h3 class="text-center mb-4 fw-bold">Shop by Category</h3>
+
+  <div class="row g-4">
+    <div class="col-12 col-sm-6 col-lg-3" *ngFor="let b of banners">
+      <div class="banner-card shadow-sm">
+        <img [src]="b.img" [alt]="b.title" class="banner-img">
+        <div class="banner-content">
+          <h5 class="fw-semibold">{{ b.title }}</h5>
+          <p class="text-muted small mb-2">{{ b.desc }}</p>
+          <button class="btn btn-outline-dark btn-sm">{{ b.btn }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

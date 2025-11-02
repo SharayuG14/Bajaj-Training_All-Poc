@@ -1,0 +1,33 @@
+<section class="auth-container">
+  <h2>Welcome Back</h2>
+  <p class="subtitle">Sign in to continue shopping with Bajaj eCommerce</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="you@example.com" />
+      <div class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        <span *ngIf="form.controls.email.errors?.['required']">Email is required</span>
+        <span *ngIf="form.controls.email.errors?.['email']">Enter a valid email address</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" placeholder="Enter your password" />
+      <div class="error" *ngIf="form.controls.password.touched && form.controls.password.invalid">
+        <span *ngIf="form.controls.password.errors?.['required']">Password is required</span>
+        <span *ngIf="form.controls.password.errors?.['minlength']">Password must be at least 6 characters</span>
+      </div>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" [disabled]="isSubmitting || form.invalid">
+      <span *ngIf="!isSubmitting">Sign In</span>
+      <span *ngIf="isSubmitting">Signing In...</span>
+    </button>
+  </form>
+
+  <p class="switch">New customer? <a routerLink="/register" [queryParams]="{ redirectTo: redirectTo }">Create an account</a></p>
+</section>

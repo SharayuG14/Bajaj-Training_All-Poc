@@ -1,0 +1,49 @@
+@if (event) {
+<h1>{{title + event.eventName}}</h1>
+<!-- <h6>{{subtitle}}</h6> -->
+
+
+
+<table class="table table-hover table-striped">
+    <tbody>
+        <tr>
+            <th>Event Id</th>
+            <td><span>{{event.eventCode|lowercase}}</span></td>
+        </tr>
+        <tr>
+            <th>Event Name</th>
+            <td><span>{{event.eventName|uppercase}}</span></td>
+        </tr>
+        <tr>
+            <th>Event description</th>
+            <td><span>{{event.description|titlecase}}</span></td>
+        </tr>
+        <tr>
+            <th>Event startDate</th>
+            <td><span>{{event.startDate|date:'short'}}</span></td>
+        </tr>
+        <tr>
+            <th>Event endDate</th>
+            <td><span>{{event.endDate|date:'medium'}}</span></td>
+        </tr>
+        <tr>
+            <th>Event fees</th>
+            <td><span>{{event.fees|currency:'INR'}}</span></td>
+        </tr>
+        <tr>
+            <th>Event seatsFilled</th>
+            <td><span>{{event.seatsFilled}}</span></td>
+        </tr>
+        <tr>
+            <th>Event logo</th>
+            <td><img [src]="event.logo" [alt]="event.eventName">></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<!-- <button class="btn btn-primary" (click)="onEventProcessed()">update</button> -->
+}@else {
+<h4>
+    We did not find the event which you are looking for
+</h4>
+}

@@ -1,0 +1,25 @@
+.order-items {
+  max-width: 200px;
+}
+
+.order-items .small {
+  line-height: 1.2;
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+.btn-group-sm > .btn {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .order-items {
+    max-width: 150px;
+  }
+}

@@ -1,0 +1,147 @@
+<div class="container mt-4">
+  <h1>{{ title }}</h1>
+  
+  <!-- Success Message -->
+  @if (successMessage) {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+    </div>
+  }
+  
+  <!-- Error Message -->
+  @if (errorMessage) {
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ errorMessage }}
+    </div>
+  }
+
+  <!-- Form -->
+  <form [formGroup]="employeeRegistration.employeeForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Employee ID -->
+    <div class="form-group mb-3">
+      <label for="employeeId" class="form-label">Employee ID <span class="text-danger">*</span></label>
+      <input 
+        id="employeeId" 
+        type="number" 
+        formControlName="employeeId" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('employeeId')}"
+        placeholder="Enter employee ID (e.g., 12345)">
+      @if (shouldShowError('employeeId')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('employeeId') }}
+        </div>
+      }
+    </div>
+
+    <!-- Employee Name -->
+    <div class="form-group mb-3">
+      <label for="employeeName" class="form-label">Employee Name <span class="text-danger">*</span></label>
+      <input 
+        id="employeeName" 
+        type="text" 
+        formControlName="employeeName" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('employeeName')}"
+        placeholder="Enter full name (letters only)">
+      @if (shouldShowError('employeeName')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('employeeName') }}
+        </div>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+      <input 
+        id="email" 
+        type="email" 
+        formControlName="email" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('email')}"
+        placeholder="Enter email address">
+      @if (shouldShowError('email')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('email') }}
+        </div>
+      }
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group mb-3">
+      <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+      <input 
+        id="phone" 
+        type="tel" 
+        formControlName="phone" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('phone')}"
+        placeholder="Enter phone (e.g., +919876543210 or 9876543210)">
+      @if (shouldShowError('phone')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('phone') }}
+        </div>
+      }
+    </div>
+
+    <!-- Zipcode -->
+    <div class="form-group mb-3">
+      <label for="zipcode" class="form-label">Zip Code <span class="text-danger">*</span></label>
+      <input 
+        id="zipcode" 
+        type="text" 
+        formControlName="zipcode" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('zipcode')}"
+        placeholder="Enter zipcode (4-6 digits)">
+      @if (shouldShowError('zipcode')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('zipcode') }}
+        </div>
+      }
+    </div>
+
+    <!-- Joining Date -->
+    <div class="form-group mb-3">
+      <label for="joiningDate" class="form-label">Joining Date <span class="text-danger">*</span></label>
+      <input 
+        id="joiningDate" 
+        type="date" 
+        formControlName="joiningDate" 
+        class="form-control"
+        [ngClass]="{'is-invalid': shouldShowError('joiningDate')}">
+      @if (shouldShowError('joiningDate')) {
+        <div class="invalid-feedback d-block">
+          {{ getErrorMessage('joiningDate') }}
+        </div>
+      }
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-group mb-3">
+      <button 
+        type="submit" 
+        class="btn btn-primary" 
+        [disabled]="isSubmitting || employeeRegistration.employeeForm.invalid">
+        @if (isSubmitting) {
+          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          Submitting...
+        } @else {
+          Submit
+        }
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-secondary ms-2" 
+        (click)="employeeRegistration.employeeForm.reset()"
+        [disabled]="isSubmitting">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+
+
+  

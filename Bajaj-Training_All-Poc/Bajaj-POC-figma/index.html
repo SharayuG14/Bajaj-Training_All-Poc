@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Replica</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-message"></i></a></li>
+                <li><a href="#"><i class="fas fa-cog"></i></a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-exit">
+            <a href="#"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </aside>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="main-header">
+        <div class="header-left">
+          <div class="greeting">
+            <h2>Hello John!</h2>
+            <h3>here is your daily statistics</h3>
+          </div>
+        </div>
+
+        <div class="header-center">
+          <span class="header-date">29 May 2020 <i class="far fa-calendar-alt"></i></span>
+        </div>
+
+        <div class="header-right">
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-comments"></i>
+          <div class="user-profile">
+            <img src="images/89428.jpg" alt="User Avatar" />
+          </div>
+        </div>
+      </header>
+
+      <!-- Overview Cards -->
+      <section class="overview-cards-container">
+        <div class="overview-cards">
+          <div class="card">
+            <div class="card-top">
+              <div class="card-content">
+                <h3>Total order</h3>
+                <p class="card-value">10</p>
+              </div>
+              <div class="card-icon"><i class="fas fa-box-open"></i></div>
+            </div>
+            <a href="#" class="more-info">More Info <i class="fas fa-chevron-down"></i></a>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div class="card-content">
+                <h3>Total earning (after taxes)</h3>
+                <p class="card-value">$91.73</p>
+              </div>
+              <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+            </div>
+            <a href="#" class="more-info">More Info <i class="fas fa-chevron-down"></i></a>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div class="card-content">
+                <h3>Restaurants</h3>
+                <p class="card-value">3</p>
+              </div>
+              <div class="card-icon"><i class="fas fa-utensils"></i></div>
+            </div>
+            <a href="#" class="more-info">More Info <i class="fas fa-chevron-down"></i></a>
+          </div>
+
+          <div class="card">
+            <div class="card-top">
+              <div class="card-content">
+                <h3>Total clients</h3>
+                <p class="card-value">2</p>
+              </div>
+              <div class="card-icon"><i class="fas fa-users"></i></div>
+            </div>
+            <a href="#" class="more-info">More Info <i class="fas fa-chevron-down"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts & Lists -->
+      <section class="charts-lists">
+        <div class="chart-card popular-days">
+          <h3>Most Popular Days</h3>
+          <div class="chart-placeholder donut-chart">
+            <img src="images/PopularDays.png" alt="Most Popular Days Chart" />
+          </div>
+        </div>
+
+        <div class="chart-card popular-time">
+          <h3>Most Popular Time</h3>
+          <div class="chart-placeholder bar-chart">
+            <img src="images/Populartime.png" alt="Most Popular Time Chart" />
+          </div>
+        </div>
+
+        <div class="chart-card order-time">
+          <h3>Average Advance Order Time</h3>
+          <div class="chart-placeholder clock-chart">
+            <img src="images/clock.png" alt="clock-icon" />
+            <p class="time-value">26922 minutes</p>
+          </div>
+        </div>
+
+        <div class="list-card loyal-customer">
+          <h3>Most Loyal Customer</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Profession</th>
+                <th>Order</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="images/Profile1.png" alt="Profile 1" /></td>
+                <td>Seyd E.</td>
+                <td>Doctor</td>
+                <td>7</td>
+                <td><i class="fas fa-star"></i> 5 star</td>
+              </tr>
+              <tr>
+                <td><img src="images/Profile2.png" alt="Profile 2" /></td>
+                <td>Rosalba</td>
+                <td>Teacher</td>
+                <td>5</td>
+                <td><i class="fas fa-star"></i> 5 star</td>
+              </tr>
+              <tr>
+                <td><img src="images/Profile3.png" alt="Profile 3" /></td>
+                <td>Prather</td>
+                <td>Doctor</td>
+                <td>4</td>
+                <td><i class="fas fa-star"></i> 4 star</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="#" class="see-more">See more <i class="fas fa-chevron-down"></i></a>
+        </div>
+
+        <div class="chart-card popular-food">
+          <h3>Most Popular Food</h3>
+          <div class="chart-placeholder pie-chart">
+            <img src="images/Popularfood.png" alt="Most Popular Food Chart" />
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Sidebar Toggle Script -->
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const mainContent = document.querySelector('.main-content');
+    
+    // Initially hide sidebar on mobile
+    if (window.innerWidth <= 1024) {
+        sidebar.classList.add('hidden');
+    }
+    
+    // Toggle sidebar
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden');
+        mainContent.classList.toggle('dimmed');
+    });
+    
+    // Click outside closes sidebar
+    mainContent.addEventListener('click', () => {
+        if (!sidebar.classList.contains('hidden') && window.innerWidth <= 1024) {
+            sidebar.classList.add('hidden');
+            mainContent.classList.remove('dimmed');
+        }
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+            sidebar.classList.remove('hidden');
+            mainContent.classList.remove('dimmed');
+        } else {
+            sidebar.classList.add('hidden');
+        }
+    });
+  </script>
+</body>
+</html>

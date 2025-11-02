@@ -1,0 +1,90 @@
+<section class="register-category">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Create Category</h1>
+      <p class="card-text">Define a new category to organize your catalog.</p>
+
+      <div class="alert alert-success" *ngIf="submitSuccess && !submitError">
+        {{ submitSuccess }}
+      </div>
+      <div class="alert alert-danger" *ngIf="submitError">
+        {{ submitError }}
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label" for="category-name">Name</label>
+            <input
+              id="category-name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="form.get('name')?.touched && form.get('name')?.invalid"
+              formControlName="name"
+              placeholder="Electronics"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+              <span *ngIf="form.get('name')?.hasError('required')">Name is required.</span>
+              <span *ngIf="form.get('name')?.hasError('minlength')">Name must be at least 3 characters.</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="category-slug">Slug</label>
+            <input
+              id="category-slug"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="form.get('slug')?.touched && form.get('slug')?.invalid"
+              formControlName="slug"
+              placeholder="electronics"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('slug')?.touched && form.get('slug')?.invalid">
+              <span *ngIf="form.get('slug')?.hasError('required')">Slug is required.</span>
+              <span *ngIf="form.get('slug')?.hasError('pattern')">Use lowercase letters, numbers, and hyphens only.</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="category-parent">Parent Category</label>
+            <select
+              id="category-parent"
+              class="form-select"
+              formControlName="parentId"
+            >
+              <option value="">None</option>
+              <option *ngFor="let category of categories" [value]="category._id">
+                {{ category.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="category-image">Image URL</label>
+            <input
+              id="category-image"
+              type="url"
+              class="form-control"
+              [class.is-invalid]="form.get('image')?.touched && form.get('image')?.invalid"
+              formControlName="image"
+              placeholder="https://example.com/image.jpg"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('image')?.touched && form.get('image')?.invalid">
+              <span>Enter a valid URL.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Create Category</span>
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status"></span>
+          </button>
+          <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

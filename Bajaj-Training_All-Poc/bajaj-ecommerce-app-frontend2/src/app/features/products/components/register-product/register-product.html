@@ -1,0 +1,231 @@
+<section class="register-product">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Create Product</h1>
+      <p class="card-text">Provide detailed information to add a new item to the catalog.</p>
+
+      <div class="alert alert-success" *ngIf="submitSuccess && !submitError">
+        {{ submitSuccess }}
+      </div>
+      <div class="alert alert-danger" *ngIf="submitError">
+        {{ submitError }}
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label" for="product-name">Name</label>
+            <input
+              id="product-name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="form.get('name')?.touched && form.get('name')?.invalid"
+              formControlName="name"
+              placeholder="Wireless Headphones"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+              <span *ngIf="form.get('name')?.hasError('required')">Name is required.</span>
+              <span *ngIf="form.get('name')?.hasError('minlength')">Name must be at least 3 characters.</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="product-sku">SKU</label>
+            <input
+              id="product-sku"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="form.get('sku')?.touched && form.get('sku')?.invalid"
+              formControlName="sku"
+              placeholder="SKU-1234"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('sku')?.touched && form.get('sku')?.invalid">
+              <span *ngIf="form.get('sku')?.hasError('required')">SKU is required.</span>
+              <span *ngIf="form.get('sku')?.hasError('minlength')">SKU must be at least 3 characters.</span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="product-description">Description</label>
+            <textarea
+              id="product-description"
+              rows="4"
+              class="form-control"
+              [class.is-invalid]="form.get('description')?.touched && form.get('description')?.invalid"
+              formControlName="description"
+              placeholder="Describe features, materials, usage, and key selling points."
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+              <span *ngIf="form.get('description')?.hasError('required')">Description is required.</span>
+              <span *ngIf="form.get('description')?.hasError('minlength')">Description must be at least 10 characters.</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label" for="product-price">Price</label>
+            <input
+              id="product-price"
+              type="number"
+              min="0"
+              step="0.01"
+              class="form-control"
+              [class.is-invalid]="form.get('price')?.touched && form.get('price')?.invalid"
+              formControlName="price"
+              placeholder="199.99"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('price')?.touched && form.get('price')?.invalid">
+              <span *ngIf="form.get('price')?.hasError('required')">Price is required.</span>
+              <span *ngIf="form.get('price')?.hasError('min')">Price must be zero or higher.</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label" for="product-discount">Discount (%)</label>
+            <input
+              id="product-discount"
+              type="number"
+              min="0"
+              max="90"
+              class="form-control"
+              [class.is-invalid]="form.get('discount')?.touched && form.get('discount')?.invalid"
+              formControlName="discount"
+              placeholder="10"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('discount')?.touched && form.get('discount')?.invalid">
+              <span *ngIf="form.get('discount')?.hasError('min')">Discount cannot be negative.</span>
+              <span *ngIf="form.get('discount')?.hasError('max')">Discount must be 90% or less.</span>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label" for="product-stock">Stock</label>
+            <input
+              id="product-stock"
+              type="number"
+              min="0"
+              class="form-control"
+              [class.is-invalid]="form.get('stock')?.touched && form.get('stock')?.invalid"
+              formControlName="stock"
+              placeholder="25"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('stock')?.touched && form.get('stock')?.invalid">
+              <span *ngIf="form.get('stock')?.hasError('required')">Stock quantity is required.</span>
+              <span *ngIf="form.get('stock')?.hasError('min')">Stock must be zero or higher.</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="product-category">Category</label>
+            <select
+              id="product-category"
+              class="form-select"
+              [class.is-invalid]="form.get('categoryId')?.touched && form.get('categoryId')?.invalid"
+              formControlName="categoryId"
+            >
+              <option value="">Select category</option>
+              <option *ngFor="let category of categories" [value]="category._id">
+                {{ category.name }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="form.get('categoryId')?.touched && form.get('categoryId')?.invalid">
+              <span>Category selection is required.</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="product-brand">Brand</label>
+            <input
+              id="product-brand"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="form.get('brand')?.touched && form.get('brand')?.invalid"
+              formControlName="brand"
+              placeholder="Acme"
+            />
+            <div class="invalid-feedback" *ngIf="form.get('brand')?.touched && form.get('brand')?.invalid">
+              <span *ngIf="form.get('brand')?.hasError('required')">Brand is required.</span>
+              <span *ngIf="form.get('brand')?.hasError('minlength')">Brand must be at least 2 characters.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-md-4">
+            <div class="form-check mt-4">
+              <input
+                id="product-featured"
+                type="checkbox"
+                class="form-check-input"
+                formControlName="isFeatured"
+              />
+              <label class="form-check-label" for="product-featured">Mark as featured</label>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="card attribute-card">
+              <div class="card-body">
+                <h2 class="h5">Attributes</h2>
+                <div class="row g-3" formGroupName="attributes">
+                  <div class="col-md-4">
+                    <label class="form-label" for="attribute-color">Color</label>
+                    <input id="attribute-color" type="text" class="form-control" formControlName="color" />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label" for="attribute-material">Material</label>
+                    <input id="attribute-material" type="text" class="form-control" formControlName="material" />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label" for="attribute-warranty">Warranty</label>
+                    <input id="attribute-warranty" type="text" class="form-control" formControlName="warranty" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h5 mb-0">Images</h2>
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="addImageField()" [disabled]="images.length >= 5">
+              Add Image
+            </button>
+          </div>
+          <div formArrayName="images">
+            <div class="row g-3 align-items-end mb-2" *ngFor="let control of images.controls; let i = index">
+              <div class="col-md-9">
+                <input
+                  type="url"
+                  class="form-control"
+                  [class.is-invalid]="control.touched && control.invalid"
+                  [formControlName]="i"
+                  placeholder="https://example.com/product-image.jpg"
+                />
+                <div class="invalid-feedback" *ngIf="control.touched && control.invalid">
+                  <span>Image URL is required.</span>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex gap-2">
+                <button type="button" class="btn btn-outline-secondary" (click)="removeImageField(i)" [disabled]="images.length === 1">
+                  Remove
+                </button>
+              </div>
+            </div>
+            <p class="form-text">Add up to five image URLs.</p>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Create Product</span>
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status"></span>
+          </button>
+          <button type="button" class="btn btn-outline-secondary" (click)="resetForm()">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

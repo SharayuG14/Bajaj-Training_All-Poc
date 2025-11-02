@@ -1,0 +1,56 @@
+<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/']">Bajaj EP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/home']">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/employees']">Employees</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/events']">Events</a>
+          </li>
+          @if(isLoggedIn===true && role==="Hr"){
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/events/register']">register Event</a>
+            </li>
+          }
+
+          @if (isLoggedIn===true && role==="Employee") {
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/employees/register']">register Employee</a>
+            </li>
+          }
+            
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">SignUp</a>
+          </li>
+          @if(isLoggedIn===true){
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/auth/login']" routerLinkActive="active" (click)="logout()">Logout</a>
+            </li>
+          }@else {
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/auth/login']" routerLinkActive="active">Login</a>
+            </li>
+          }
+          
+         
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-sm-2" type="search" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
